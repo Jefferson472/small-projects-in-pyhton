@@ -2,10 +2,9 @@ from tkinter import *
 from datetime import datetime
 import pyglet
 
-font = 'fonts\digital-7.ttf'
-digitalFont = open(font, 'rb')
+caminho = 'fonts\digital-7.ttf'
+pyglet.font.add_file(caminho)
 
-pyglet.font.add_file('fonts\digital-7.ttf')
 
 def clockTime():
     time = datetime.now()
@@ -30,18 +29,21 @@ colorBlue = "#3080f0"
 
 bgColor = colorBlack
 
-
 tk = Tk()
 tk.title('Relógio Digital')
 tk.geometry('440x180')
 tk.resizable(False, False)
 tk.configure(background=bgColor)
 
-label1 = Label(tk, text='', font=('digital-7 80'), bg=bgColor, fg=colorGreen)
-label1.grid(row=0, column=0, sticky=NW, padx=5)
+def alteraFonte():
+    pass
+
+
+label1 = Label(tk, font=('digital-7 100'), bg=bgColor, fg=colorGreen)
+label1.grid(row=0, column=0, sticky=N, padx=5)
 
 label2 = Label(tk, font=('digital-7 20'), bg=bgColor, fg= colorGreen)
-label2.grid(row=1, column=0, sticky=NW, padx=5)
+label2.grid(row=1, column=0, sticky=N, padx=5)
 
 clockTime()
 
