@@ -1,9 +1,12 @@
 from tkinter import *
 from datetime import datetime
-import pyglet
+from utils import pickColor
 
-caminho = 'fonts\digital-7.ttf'
-pyglet.font.add_file(caminho)
+
+# Pyglet simplesmente parou de funcionar, FileNotFoundError: [Errno 2] No such file or directory: 'fonts\\digital-7.ttf'.
+# O comando font = open(font, 'rb') também não funcionou mais.
+import pyglet
+pyglet.font.add_file('digital-7.ttf')
 
 
 def clockTime():
@@ -20,32 +23,25 @@ def clockTime():
     label2.config(text=weekDay + ' ' + str(dateDay) + '/' + str(mounth) + '/' + year)
 
 
-colorBlack = "#3d3d3d"
-colorWhite = "#fafcff"
-colorGreen = "#21c25c"
-colorRed = "#eb463b"
-colorAsh = "#dedcdc"
-colorBlue = "#3080f0"
-
-bgColor = colorBlack
+bgColor = pickColor.colorBlack
+textColor = pickColor.colorGreen
 
 tk = Tk()
 tk.title('Relógio Digital')
 tk.geometry('440x180')
 tk.resizable(False, False)
 tk.configure(background=bgColor)
+tk.iconbitmap('clock.ico')
 
-def alteraFonte():
-    pass
-
-
-label1 = Label(tk, font=('digital-7 100'), bg=bgColor, fg=colorGreen)
+label1 = Label(tk, font=('digital-7 100'), bg=bgColor, fg=textColor)
 label1.grid(row=0, column=0, sticky=N, padx=5)
 
-label2 = Label(tk, font=('digital-7 20'), bg=bgColor, fg= colorGreen)
+label2 = Label(tk, font=('digital-7 20'), bg=bgColor, fg=textColor)
 label2.grid(row=1, column=0, sticky=N, padx=5)
 
+label3 = Label(tk, font=('Arial 5'), bg=bgColor, fg=textColor, text='Por Jefferson Miranda', pady=0)
+label3.grid(row=3, column=0, sticky=E)
+
+
 clockTime()
-
-
 tk.mainloop()
