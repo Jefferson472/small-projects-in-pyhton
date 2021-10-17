@@ -5,8 +5,8 @@ from utils import pickColor
 
 # Pyglet simplesmente parou de funcionar, FileNotFoundError: [Errno 2] No such file or directory: 'fonts\\digital-7.ttf'.
 # O comando font = open(font, 'rb') também não funcionou mais.
-import pyglet
-pyglet.font.add_file('digital-7.ttf')
+# import pyglet
+# pyglet.font.add_file('digital-7.ttf')
 
 
 def clockTime():
@@ -30,8 +30,35 @@ tk = Tk()
 tk.title('Relógio Digital')
 tk.geometry('440x180')
 tk.resizable(False, False)
-tk.configure(background=bgColor)
-tk.iconbitmap('clock.ico')
+
+# tk.iconbitmap('clock.ico')
+
+def changeColorBg():
+    print('alterou a cor')
+    tk.quit()
+    bgColor = pickColor.colorBlue    
+    tk.configure(background=bgColor, menu=menuBar)
+    tk.mainloop()
+    
+
+
+def changeColorText():
+    print('alterou a cor')
+
+
+def exitApp():
+    tk.quit()
+
+
+menuBar = Menu(tk)
+optionsMenuBar = Menu(tk, tearoff=0)
+optionsMenuBar.add_command(label='Cor de Fundo', command=changeColorBg)
+optionsMenuBar.add_command(label='Cor da Fonte', command=changeColorText)
+optionsMenuBar.add_separator()
+optionsMenuBar.add_command(label='Sair', command=exitApp)
+menuBar.add_cascade(label='Opçoes', menu=optionsMenuBar)
+
+tk.configure(background=bgColor, menu=menuBar)
 
 label1 = Label(tk, font=('digital-7 100'), bg=bgColor, fg=textColor)
 label1.grid(row=0, column=0, sticky=N, padx=5)
