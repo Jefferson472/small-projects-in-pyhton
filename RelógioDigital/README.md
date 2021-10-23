@@ -10,4 +10,4 @@ Projeto criado com base no site [Usando Python](https://www.usandopy.com/projeto
 - [ ] Criar um executável;
 - [ ] Alterar o ícone da janela na exibição da barra do menu do Windows;
 - [ ] Diminuir o tamanho do código - Clean Code;
-- [ ] Add mais opções de temas.
+- [X] Add mais opções de temas.
