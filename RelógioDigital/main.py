@@ -3,7 +3,7 @@ from datetime import datetime
 from utils import pickColor
 
 import pyglet
-pyglet.font.add_file('digital-7.ttf')
+pyglet.font.add_file('RelógioDigital\digital-7.ttf')
 
 def clockTime():
     time = datetime.now()
@@ -27,46 +27,37 @@ tk.title('Relógio Digital')
 tk.geometry('440x200')
 tk.resizable(False, False)
 
-tk.iconbitmap('clock.ico')
+tk.iconbitmap('RelógioDigital\clock.ico')
 
-def changeColorBlue():
-    bgColor = pickColor.colorBlue    
-    textColor = pickColor.colorBlue
+def lightMode():
+    bgColor = pickColor.colorWhite
     tk.config(bg=bgColor)
-    label1.config(bg=textColor)
-    label2.config(bg=textColor)
+    label1.config(bg=bgColor)
+    label2.config(bg=bgColor)
 
-
-def changeColorGreen():
-    bgColor = pickColor.colorGreen    
-    textColor = pickColor.colorGreen
-    tk.config(bg=bgColor)
-    label1.config(bg=textColor)
-    label2.config(bg=textColor)
-
-
-def changeColorBlack():
-    bgColor = pickColor.colorBlack
     textColor = pickColor.colorBlack
+    label1.config(fg=textColor)
+    label2.config(fg=textColor)
+
+
+def darkMode():
+    bgColor = pickColor.colorBlack
     tk.config(bg=bgColor)
-    label1.config(bg=textColor)
-    label2.config(bg=textColor)
+    label1.config(bg=bgColor)
+    label2.config(bg=bgColor)
 
-
-def changeColorTextBlue():       
-    textColor = pickColor.colorBlue    
+    textColor = pickColor.colorWhite
     label1.config(fg=textColor)
     label2.config(fg=textColor)
 
 
-def changeColorTextGreen():
-    textColor = pickColor.colorGreen    
-    label1.config(fg=textColor)
-    label2.config(fg=textColor)
+def regularMode():
+    bgColor = pickColor.colorBlack
+    tk.config(bg=bgColor)
+    label1.config(bg=bgColor)
+    label2.config(bg=bgColor)
 
-
-def changeColorTextBlack():
-    textColor = pickColor.colorBlack   
+    textColor = pickColor.colorGreen
     label1.config(fg=textColor)
     label2.config(fg=textColor)
 
@@ -76,16 +67,11 @@ optionsMenuBar = Menu(tk, tearoff=0)
 menuBar.add_cascade(label='Opçoes', menu=optionsMenuBar)
 
 optionChangeColor = Menu(tk, tearoff=0)
-optionChangeColor.add_command(label='Azul', command=changeColorBlue)
-optionChangeColor.add_command(label='Verde', command=changeColorGreen)
-optionChangeColor.add_command(label='Preto', command=changeColorBlack)
-optionsMenuBar.add_cascade(label='Cor de Fundo', menu=optionChangeColor)
+optionChangeColor.add_command(label='Light Mode', command=lightMode)
+optionChangeColor.add_command(label='Dark Mode', command=darkMode)
+optionChangeColor.add_command(label='Padrão', command=regularMode)
+optionsMenuBar.add_cascade(label='Tema', menu=optionChangeColor)
 
-optionChangeTextColor = Menu(tk, tearoff=0)
-optionChangeTextColor.add_command(label='Azul', command=changeColorTextBlue)
-optionChangeTextColor.add_command(label='Verde', command=changeColorTextGreen)
-optionChangeTextColor.add_command(label='Preto', command=changeColorTextBlack)
-optionsMenuBar.add_cascade(label='Cor da Fonte', menu=optionChangeTextColor)
 
 optionsMenuBar.add_separator()
 optionsMenuBar.add_command(label='Sair', command=tk.quit)
