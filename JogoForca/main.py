@@ -1,4 +1,4 @@
-from operator import le
+from JogoForca.utils import imprimeForca
 from random import randint
 
 def sotearPalavra():
@@ -18,39 +18,41 @@ def sotearPalavra():
 
 
 def verificarLetra(letraJogador = ''):
-    print('Palavra: ', end='')
-    for letra in palavraSorteada:
-        if letraJogador == letra:
-            print(letraJogador, end='')
-            letrasCertas.append(letraJogador)
-        elif letra == ' ':
+    if letraJogador in palavraSorteada:
+        letrasCertas.append(letraJogador)
+    else:
+        letrasErradas.append(letraJogador)
+
+    imprimeForca.forca[len(letrasErradas)]
+    
+
+def construirPalavra():
+    print('Palavra: ')
+    for letra in palavraSorteada:               
+        if letra in letrasCertas:
             print(letra, end='')
         else:
-            for i in letrasCertas:
-                if i == letraJogador:
-                    print(i, end='')
-                else:
-                    print(letra.replace(letra, '_'), end='')
-    
-    if letraJogador not in palavraSorteada:
-        letrasErradas.append(letraJogador)
+            print('_', end='')
 
 
 letrasCertas = []
 letrasErradas = []
 
 palavraSorteada = sotearPalavra()
-verificarLetra()
 
 while len(letrasCertas) < len(palavraSorteada):    
+    construirPalavra()
     letraJogador = input('\nInforme uma letra: ')
+
+    #stop teste
+    if letraJogador == '9':
+        break
+
     verificarLetra(letraJogador)
     print('\nLetras Certas: ', letrasCertas, end='')
     print('\nLetras Erradas: ', letrasErradas)
     if len(letrasErradas) == 5:
         break
-    
 
-    #stop teste
-    if letraJogador == '9':
-        break
+
+

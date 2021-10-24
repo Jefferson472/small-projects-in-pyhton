@@ -1,4 +1,4 @@
-def imprimeForca():    
+class imprimeForca():    
     forca = [
         '''
         +---+
@@ -60,7 +60,4 @@ def imprimeForca():
         
     ]    
 
-    for elemento in forca:
-        print(elemento)
 
-imprimeForca()
