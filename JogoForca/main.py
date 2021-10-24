@@ -26,9 +26,14 @@ def verificarLetra(letraJogador = ''):
         elif letra == ' ':
             print(letra, end='')
         else:
-            print(letra.replace(letra, '_'), end='')
-        if letraJogador != letra:
-            letrasErradas.append(letraJogador)
+            for i in letrasCertas:
+                if i == letraJogador:
+                    print(i, end='')
+                else:
+                    print(letra.replace(letra, '_'), end='')
+    
+    if letraJogador not in palavraSorteada:
+        letrasErradas.append(letraJogador)
 
 
 letrasCertas = []
@@ -40,7 +45,12 @@ verificarLetra()
 while len(letrasCertas) < len(palavraSorteada):    
     letraJogador = input('\nInforme uma letra: ')
     verificarLetra(letraJogador)
-    print('Letras Certas: ', letrasCertas, end='')
+    print('\nLetras Certas: ', letrasCertas, end='')
     print('\nLetras Erradas: ', letrasErradas)
-    if letrasErradas == 5:
+    if len(letrasErradas) == 5:
+        break
+    
+
+    #stop teste
+    if letraJogador == '9':
         break
