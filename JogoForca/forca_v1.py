@@ -1,5 +1,3 @@
-# Hangman Game (Jogo da Forca)
-
 from utils import imprimeForca
 from random import randint
 
