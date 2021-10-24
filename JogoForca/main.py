@@ -1,4 +1,4 @@
-from JogoForca.utils import imprimeForca
+from utils import imprimeForca
 from random import randint
 
 def sotearPalavra():
@@ -10,20 +10,19 @@ def sotearPalavra():
     palavra = open('JogoForca\BancoPalavras.txt', 'r')
     for n, line in enumerate(palavra):    
         if numAleatorio == n:
-            palavraSorteada = line
+            palavraSorteada = line.lower()
             palavra.close
             break
     
     return palavraSorteada.replace('\n','')
-
+    
 
 def verificarLetra(letraJogador = ''):
-    if letraJogador in palavraSorteada:
-        letrasCertas.append(letraJogador)
-    else:
-        letrasErradas.append(letraJogador)
-
-    imprimeForca.forca[len(letrasErradas)]
+    for letra in palavraSorteada:  
+        if letraJogador == letra:
+            letrasCertas.append(letraJogador)
+    if letraJogador not in palavraSorteada:
+        letrasErradas.append(letraJogador)    
     
 
 def construirPalavra():
@@ -41,8 +40,15 @@ letrasErradas = []
 palavraSorteada = sotearPalavra()
 
 while len(letrasCertas) < len(palavraSorteada):    
+    print(imprimeForca.forca[len(letrasErradas)])
     construirPalavra()
-    letraJogador = input('\nInforme uma letra: ')
+    while True:
+        letraJogador = input('\nInforme uma letra: ')
+        if letraJogador in letrasCertas or letraJogador in letrasErradas:
+            print('Letra Repetida! Digite uma letra nova!')
+            False
+        else:
+            break
 
     #stop teste
     if letraJogador == '9':
@@ -51,8 +57,9 @@ while len(letrasCertas) < len(palavraSorteada):
     verificarLetra(letraJogador)
     print('\nLetras Certas: ', letrasCertas, end='')
     print('\nLetras Erradas: ', letrasErradas)
-    if len(letrasErradas) == 5:
+    if len(letrasErradas) == 7:
+        print('Você perdeu!')
         break
 
-
-
+if len(letrasCertas) == len(palavraSorteada):
+    print(f'Parabéns! Você acertou a palavra {palavraSorteada}!')
