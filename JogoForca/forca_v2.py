@@ -4,34 +4,51 @@
 
 import random
 from utils import imprimeForca
+secret_word = []
+wrong_letters = []
 
+class Hangman:	
 
-class Hangman:
-	
 	def __init__(self, word):
-		pass
+		self.word = word
 
 		
 	# Método para adivinhar a letra
-	def guess(self, letter):
-		pass
+	def guess(self, letter, word):
+		for letra in word:			
+			if letra == letter:
+				secret_word.append(letter)
+				break
+		if letter not in word:
+				wrong_letters.append(letter)
+		
 		
 	# Método para verificar se o jogo terminou
-	def hangman_over(self):
-		pass
+	def hangman_over(self, word):
+		if len(wrong_letters) == 7:
+			return True
+
 		
 	# Método para verificar se o jogador venceu
-	def hangman_won(self):
-		pass
+	def hangman_won(self, word):
+		if len(word) == len(secret_word):
+			return True
+	
 
 	# Método para não mostrar a letra no board
-	def hide_word(self):
-		pass
+	def hide_word(self, word):
+		for letra in word:
+			if letra in secret_word:
+				print(letra, end='')
+			else:
+				print('_', end='')
+
+		print('\n')
 		
 	# Método para checar o status do game e imprimir o board na tela
 	def print_game_status(self):
-		print(imprimeForca.forca[len(letrasErradas)])
-		pass
+		print(imprimeForca.forca[len(wrong_letters)])
+		
 
 # Função para ler uma palavra de forma aleatória do banco de palavras
 def rand_word():
@@ -46,39 +63,25 @@ def main():
 	game = Hangman(rand_word())
 
 	# Enquanto o jogo não tiver terminado, print do status, solicita uma letra e faz a leitura do caracter
-	while len(letrasCertas) < len(game):    
-		Hangman.print_game_status()
-		while True:
-			letraJogador = input('\nInforme uma letra: ')
-			if letraJogador in letrasCertas or letraJogador in letrasErradas:
-				print('Letra Repetida! Digite uma letra nova!')
-				False
-			else:
-				break
-
-		#stop teste
-		if letraJogador == '9':
+	while True:
+		game.print_game_status()
+		game.hide_word(game.word)
+		letter = input('Informe uma letra: ')
+		if letter == '9':
 			break
+		game.guess(letter, game.word)
 
-		verificarLetra(letraJogador)
-		print('\nLetras Certas: ', letrasCertas, end='')
-		print('\nLetras Erradas: ', letrasErradas)
-		if len(letrasErradas) == 7:
-			print(f'Você perdeu! A palavra era {palavraSorteada}')
+		# De acordo com o status, imprime mensagem na tela para o usuário
+		if game.hangman_won(game.word):
+			print ('\nParabéns! Você venceu!!')
 			break
-
-	# Verifica o status do jogo
-	game.print_game_status()	
-
-	# De acordo com o status, imprime mensagem na tela para o usuário
-	if game.hangman_won():
-		print ('\nParabéns! Você venceu!!')
-	else:
-		print ('\nGame over! Você perdeu.')
-		print ('A palavra era ' + game.word)
+		if game.hangman_over(game.word):
+			print ('\nGame over! Você perdeu.')
+			print ('A palavra era ' + game.word)
+			break
 		
 	print ('\nFoi bom jogar com você! Agora vá estudar!\n')
 
-		
+
 if __name__ == "__main__":
 	main()
