@@ -46,11 +46,3 @@ class Cadastro():
     def excluiProduto(self, nome):
         self.cursor.execute("""DELETE FROM produtos WHERE nome = ?""", (nome,))
         self.salvaAlteracoes(nome, 'excluído')
-
-
-# def main():
-
-
-
-# if __name__ == "__main__":
-#     main()

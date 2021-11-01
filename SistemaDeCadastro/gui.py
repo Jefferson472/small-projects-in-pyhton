@@ -48,8 +48,6 @@ def listar(lista_Produtos):
     tree.grid(row=2, columnspan=10, pady=10)    
     
 
-
-
 root.title('Tela de Cadastro')
 root.geometry('575x300')
 root.resizable(False, False)
