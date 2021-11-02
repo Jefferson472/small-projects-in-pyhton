@@ -4,7 +4,7 @@ from _Cadastro import Cadastro
 
 class Interface():
     def __init__(self):
-        self.cadastroDB = Cadastro('Cadastro.db')
+        self.cadastroDB = Cadastro('SistemaDeCadastro\Cadastro.db')
         self.root = Tk()
         self.root.title('Tela de Cadastro')
         self.root.geometry('575x300')
