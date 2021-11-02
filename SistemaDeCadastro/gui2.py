@@ -34,38 +34,39 @@ class Interface():
        
 
     def inputCreator(self, variavel, row, column, largura=20):
-        self.variavel = Entry(self.root, bd=5, relief='flat', highlightthickness=1, width=largura)
-        self.variavel.grid(row=row, column=column, padx=10, pady=10)
+        self.inputVariavel = Entry(self.root, bd=5, relief='flat', highlightthickness=1, width=largura)
+        self.inputVariavel.grid(row=row, column=column, padx=10, pady=10)
+        print(self.variavel)
 
 
-    def buttonCreator(self, variavel, text, row, column):
-        self.variavel = Button(self.buttonFrame, text=text, command=self.variavel)
-        self.variavel.grid(row=row, column=column, padx=10, pady=10)
-
+    def buttonCreator(self, variavel, text, row, column, comando):
+        self.variavel = Button(self.buttonFrame, text=text, command=comando)
+        self.variavel.grid(row=row, column=column, padx=10, pady=10)        
+        
 
     def attListaProdutos(self, lista_Produtos):
         for i in lista_Produtos:
             self.tree.insert("", 'end', values=(i[0], i[1], i[2], i[3]))
 
 
-# class BtnExecuta():
-    # def __init__(self, variavel) -> None:        
-    # self.variavel()
-
     def gravar(self):    
-        self.produto = self.produtoInput.get()
-        self.quantidade = self.qntdInput.get()
-        self.valor = self.valorInput.get()
-        cadastroDB.addProduto(self.produto, self.quantidade, self.valor)
+        print('Teste')
+        self.produto = self.inputVariavel.get()
+        print(self.produto)
+        self.quantidade = self.inputVariavel.get()
+        print(self.quantidade)
+        self.valor = self.inputVariavel.get()
+        print(self.valor)
+        self.cadastroDB.addProduto(self.produto, self.quantidade, self.valor)
 
-    def buscaProduto():
+    def pesquisar():
         produto = produtoInput.get()
         if produto == '':
             listar(cadastroDB.listarProdutos())
         else:
             listar(cadastroDB.buscaProduto(produto))
 
-    def deletarProduto():        
+    def excluir():        
         pass
         
 
@@ -78,9 +79,9 @@ def main():
     janela.labelCreator(variavel='ValorLabel', text='Valor: ', row=0, column=4)
     janela.inputCreator(variavel='ValorInput', row=0, column=5, largura=10)
 
-    janela.buttonCreator(variavel='btnGravar', text='Gravar', row=0, column=0)
-    janela.buttonCreator(variavel='btnPesquisar', text='Pesquisar', row=0, column=1)
-    janela.buttonCreator(variavel='btnExcluir', text='Excluir', row=0, column=2)
+    janela.buttonCreator(variavel='btnGravar', text='Gravar', row=0, column=0, comando=janela.gravar)
+    janela.buttonCreator(variavel='btnPesquisar', text='Pesquisar', row=0, column=1, comando='pesquisar')
+    janela.buttonCreator(variavel='btnExcluir', text='Excluir', row=0, column=2, comando='excluir')
     
     cadastroDB = Cadastro('Cadastro.db')
     janela.attListaProdutos(cadastroDB.listarProdutos())
