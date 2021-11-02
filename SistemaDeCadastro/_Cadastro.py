@@ -27,7 +27,7 @@ class Cadastro():
         self.salvaAlteracoes(nome, 'alterado')     
             
 
-    def addProduto(self, nome, preco, quantidade):
+    def addProduto(self, nome='', preco=0, quantidade=0):
         self.cursor.execute("""INSERT INTO produtos VALUES (NULL, ?, ?, ?)""", (
             nome, preco, quantidade))
         self.salvaAlteracoes(nome, 'adicionado')      
@@ -43,6 +43,6 @@ class Cadastro():
         return self.cursor.fetchall()
     
 
-    def excluiProduto(self, nome):
-        self.cursor.execute("""DELETE FROM produtos WHERE nome = ?""", (nome,))
+    def excluiProduto(self, id, nome):
+        self.cursor.execute("""DELETE FROM produtos WHERE id = ?""", (id,))
         self.salvaAlteracoes(nome, 'excluído')
