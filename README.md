@@ -9,4 +9,4 @@
 
 3. [Sistema de Cadastro - CRUD](https://github.com/Jefferson472/small-projects-in-pyhton/tree/main/SistemaDeCadastro)
 
-4. [Jogo da Velha](https://github.com/Jefferson472/small-projects-in-pyhton/tree/main/JogoDaVelha) - Não finalizado!
+4. [Jogo da Velha](https://github.com/Jefferson472/small-projects-in-pyhton/tree/main/JogoDaVelha) - Em progresso!
