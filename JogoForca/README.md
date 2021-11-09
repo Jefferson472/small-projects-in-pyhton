@@ -6,4 +6,4 @@ Na primeira versão [forca_v1](https://github.com/Jefferson472/small-projects-in
 
 Já na versão [forca_v2](https://github.com/Jefferson472/small-projects-in-pyhton/blob/main/JogoForca/forca_v2.py) o projeto foi evoluído para o padrão orientado à objeto. 
 
-!( JogoForca\forca_img.png)
+![Tela_Jogo](forca_img.png)
